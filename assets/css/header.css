@@ -1,0 +1,48 @@
+.header {
+  /* padding-top: 10px; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.24px;
+  margin: 0;
+}
+
+.header__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header__link:hover {
+  text-decoration: underline;
+}
+
+.header__link:visited {
+  color: inherit;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  column-gap: 20px;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav__link:hover {
+  text-decoration: underline;
+}
+
+.nav__link:visited {
+  color: inherit;
+}
