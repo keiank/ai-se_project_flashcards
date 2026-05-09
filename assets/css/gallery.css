@@ -1,7 +1,12 @@
 .gallery__header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 38px;
+}
+
+.gallery__header .gallery__title {
+  margin: 0;
 }
 
 .gallery__title {

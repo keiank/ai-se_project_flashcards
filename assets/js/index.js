@@ -1,6 +1,14 @@
 import { gallery, getDeckByID } from "./gallery.js";
-import { hexToString } from "./colorMap.js";
+import { hexToString, removeColorClasses } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
+import { renderDeckView } from "./deck-view.js";
+
+const homeSection = document.querySelector("#home");
+const deckSection = document.querySelector("#deck-view");
+const carouselSection = document.querySelector("#carousel");
+const notFoundSection = document.querySelector("#not-found");
+const main = document.querySelector("main");
+const carouselStyle = "page__main-content_type_carousel";
 
 function createDeckEl(item) {
   const cardTemplate = document.querySelector(".card-template");
@@ -15,9 +23,9 @@ function createDeckEl(item) {
   // Set deck card count
   const cardCount = newCard.querySelector(".card__count");
   cardCount.textContent = `${item.cards.length} cards`;
-  // Link to cards in deck
+  // Link to deck view
   const cardLink = newCard.querySelector(".card__link");
-  cardLink.href = `#carousel/${item.id}`;
+  cardLink.href = `#deck/${item.id}`;
   // Delete deck from DOM when delete button clicked
   const deleteBtn = newCard.querySelector(".card__delete-btn");
   deleteBtn.addEventListener("click", (event) => {
@@ -28,21 +36,17 @@ function createDeckEl(item) {
 }
 
 function renderDeckEl(item) {
-  const galleryList = document.querySelector(".gallery__list");
+  const galleryList = homeSection.querySelector(".gallery__list");
   const card = createDeckEl(item);
   galleryList.prepend(card);
 }
 
 gallery.forEach(renderDeckEl);
 
-const homeSection = document.querySelector("#home");
-const carouselSection = document.querySelector("#carousel");
-const notFoundSection = document.querySelector("#not-found");
-const main = document.querySelector("main");
-const carouselStyle = "page__main-content_type_carousel";
 
 function renderHomeView() {
   homeSection.style.display = "block";
+  deckSection.style.display = "none";
   carouselSection.style.display = "none";
   notFoundSection.style.display = "none";
   main.classList.remove(carouselStyle);
@@ -50,6 +54,7 @@ function renderHomeView() {
 
 function renderNotFoundView() {
   homeSection.style.display = "none";
+  deckSection.style.display = "none";
   carouselSection.style.display = "none";
   notFoundSection.style.display = "block";
   main.classList.remove(carouselStyle);
@@ -57,15 +62,32 @@ function renderNotFoundView() {
 
 function displayCarouselSection() {
   homeSection.style.display = "none";
+  deckSection.style.display = "none";
   carouselSection.style.display = "flex";
   notFoundSection.style.display = "none";
   main.classList.add(carouselStyle);
 }
 
+
+let currentDeck = null;
+const practiceBtn = deckSection.querySelector(".card__practice-btn");
+practiceBtn.onclick = () => {
+  window.location.hash = `carousel/${currentDeck.id}`;
+};
+
 function router() {
   const hash = window.location.hash.slice(1) || "home";
   if (hash === "home" || hash === "") {
     renderHomeView();
+  } else if (hash.startsWith("deck/")) {
+    const deckID = hash.split("/")[1];
+    const deck = getDeckByID(deckID);
+    if (deck) {
+      renderDeckView(deck);
+      currentDeck = deck;
+    } else {
+      renderNotFoundView();
+    }
   } else if (hash.startsWith("carousel/")) {
     displayCarouselSection();
     const deckID = hash.split("/")[1];
