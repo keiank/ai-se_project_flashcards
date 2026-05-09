@@ -1,3 +1,9 @@
+.gallery__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 38px;
+}
+
 .gallery__title {
   font-weight: 700;
   font-size: 40px;

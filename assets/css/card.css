@@ -64,6 +64,13 @@
   opacity: 100%;
 }
 
+.card__practice-btn {
+  background-color: #1A1A1A;
+  color: white;
+  border-radius: 8px;
+  padding: 12px 16px 14px;
+}
+
 .card_color_green {
   background-color: #64d583;
 }
