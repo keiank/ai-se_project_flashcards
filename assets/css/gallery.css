@@ -21,7 +21,7 @@
   gap: 20px;
 }
 
-.gallery__new-gallery-btn {
+.gallery__new-card-btn {
   width: 325px;
   height: 205px;
   border-radius: 20px;
@@ -36,7 +36,7 @@
   border: none;
 }
 
-.gallery__new-gallery-btn:hover {
+.gallery__new-card-btn:hover {
   background-color: #c5c5c5;
   color: #1a1a1a;
 }
