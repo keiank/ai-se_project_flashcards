@@ -1,4 +1,4 @@
-import { decks, getDeckByID } from "./decks.js";
+import { gallery, getDeckByID } from "./gallery.js";
 import { hexToString } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
 
@@ -28,12 +28,12 @@ function createDeckEl(item) {
 }
 
 function renderDeckEl(item) {
-  const deckList = document.querySelector(".decks__list");
+  const galleryList = document.querySelector(".gallery__list");
   const card = createDeckEl(item);
-  deckList.prepend(card);
+  galleryList.prepend(card);
 }
 
-decks.forEach(renderDeckEl);
+gallery.forEach(renderDeckEl);
 
 const homeSection = document.querySelector("#home");
 const carouselSection = document.querySelector("#carousel");
