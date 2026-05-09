@@ -43,20 +43,7 @@
         <h2 class="gallery__title">My Decks</h2>
         <div class="gallery__list_wrapper">
           <ul class="gallery__list gallery__list_wrapper_display_contents">
-            <template class="card-template">
-              <li class="card card_color_green">
-                <a href="#" class="card__link"></a>
-                <h3 class="card__title"></h3>
-                <div class="card__row">
-                  <p class="card__count"></p>
-                  <button
-                    class="card__delete-btn"
-                    aria-label="Delete this deck"
-                    type="button"
-                  ></button>
-                </div>
-              </li>
-            </template>
+            
           </ul>
           <button
             class="gallery__new-card-btn"
@@ -78,22 +65,7 @@
         </div>
         <div class="gallery__list_wrapper">
           <ul class="gallery__list gallery__list_wrapper_display_contents">
-            <template class="flashcard-template">
-              <li class="card card_color_green">
-                <h3 class="card__title"></h3>
-                <div class="card__row">
-                  <button 
-                    class="card__flip-btn"
-                    aria-label="Flip this flashcard to see the other side of it"
-                  ></button>
-                  <button
-                    class="card__delete-btn"
-                    aria-label="Delete this card"
-                    type="button"
-                  ></button>
-                </div>
-              </li>
-            </template>
+            
           </ul>
           <button
             class="gallery__new-card-btn"
@@ -135,6 +107,36 @@
     <footer class="footer">
       <p class="footer__text">&copy; Keian Kaserman</p>
     </footer>
+    <template class="card-template">
+      <li class="card card_color_green">
+        <a href="#" class="card__link"></a>
+        <h3 class="card__title"></h3>
+        <div class="card__row">
+          <p class="card__count"></p>
+          <button
+            class="card__delete-btn"
+            aria-label="Delete this deck"
+            type="button"
+          ></button>
+        </div>
+      </li>
+    </template>
+    <template class="flashcard-template">
+      <li class="card card_color_green">
+        <h3 class="card__title"></h3>
+        <div class="card__row">
+          <button 
+            class="card__flip-btn"
+            aria-label="Flip this flashcard to see the other side of it"
+          ></button>
+          <button
+            class="card__delete-btn"
+            aria-label="Delete this card"
+            type="button"
+          ></button>
+        </div>
+      </li>
+    </template>
     <script src="assets/js/index.js" type="module"></script>
   </body>
 </html>
