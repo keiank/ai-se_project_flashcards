@@ -43,7 +43,6 @@ function renderDeckEl(item) {
 
 gallery.forEach(renderDeckEl);
 
-
 function renderHomeView() {
   homeSection.style.display = "block";
   deckSection.style.display = "none";
@@ -68,9 +67,8 @@ function displayCarouselSection() {
   main.classList.add(carouselStyle);
 }
 
-
 let currentDeck = null;
-const practiceBtn = deckSection.querySelector(".card__practice-btn");
+const practiceBtn = deckSection.querySelector(".gallery__practice-btn");
 practiceBtn.onclick = () => {
   window.location.hash = `carousel/${currentDeck.id}`;
 };
