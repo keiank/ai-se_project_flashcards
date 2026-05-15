@@ -20,3 +20,13 @@
 .page__main-content_type_carousel {
   margin: 106px auto 0;
 }
+
+@media screen and (max-width: 600px) {
+  .page {
+    padding: 20px;
+  }
+
+  .page__main-content {
+    margin-top: 40px;
+  }
+}

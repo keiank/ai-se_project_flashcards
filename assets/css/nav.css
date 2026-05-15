@@ -20,3 +20,9 @@
 .nav__link:visited {
   color: inherit;
 }
+
+@media screen and (max-width: 600px) {
+  .nav__links {
+    gap: 12px;
+  }
+}

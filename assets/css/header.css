@@ -1,5 +1,4 @@
 .header {
-  /* padding-top: 10px; */
   display: flex;
   justify-content: space-between;
 }
@@ -22,4 +21,10 @@
 
 .header__link:visited {
   color: inherit;
+}
+
+@media screen and (max-width: 600px) {
+  .header__title {
+    padding-bottom: 2px;
+  }
 }
