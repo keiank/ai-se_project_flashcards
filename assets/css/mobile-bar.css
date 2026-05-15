@@ -1,6 +1,6 @@
 @media screen and (max-width: 805px) {
   .page {
-    padding-bottom: 100px;
+    /* padding-bottom: 100px; */
   }
 
   /* Faded bar behind the fixed button */
@@ -10,7 +10,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 156px;
+    height: 200px;
     background: linear-gradient(to bottom, transparent 0%, #ececec 35%);
     pointer-events: none;
     z-index: 2;
@@ -18,7 +18,7 @@
 
   .gallery__new-card-btn {
     position: fixed;
-    bottom: 39px;
+    bottom: 63px;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -35,5 +35,11 @@
     border-radius: 8px;
     font-family: Inter;
     justify-content: center;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 20px;
+    z-index: 4;
   }
 }
