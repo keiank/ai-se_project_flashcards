@@ -16,12 +16,11 @@
     z-index: 2;
   }
 
-  .gallery__new-card-btn {
+  .gallery__new-card-btn,
+  .gallery__practice-btn {
     position: fixed;
     bottom: 63px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     z-index: 3;
     padding: 12px 16px 14px;
     font-size: 18px;
@@ -29,12 +28,31 @@
     line-height: 100%;
     background-color: #000;
     color: #fff;
-    width: calc(100% - 40px);
-    max-width: 353px;
     aspect-ratio: auto;
     border-radius: 8px;
     font-family: Inter;
     justify-content: center;
+  }
+
+  .gallery__new-card-btn {
+    width: calc(100% - 40px);
+    max-width: 353px;
+    left: 0;
+    right: 0;
+  }
+
+  .gallery__practice-btn {
+    position: fixed;
+    right: 20px;
+    width: calc(50% - 6px - 20px);
+  }
+
+  .gallery__new-card-btn_location_deck-view {
+    position: fixed;
+    left: 20px;
+    width: calc(50% - 6px - 20px);
+    background: #cccccccc;
+    color: #1a1a1a80;
   }
 
   .footer {
