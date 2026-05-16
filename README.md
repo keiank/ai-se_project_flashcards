@@ -10,9 +10,12 @@ The first project in the AI Software Engineering path on Tripleten. It is a web 
 
 - Single page display
 - Review each deck using a carousel
-- Select from multiple decks
+- Choose to review among multiple decks
 - Add new decks of cards (coming soon!)
 - Delete decks of cards
+- Responsive design
+- Open deck to display all cards
+- Deletion confirmation modal
 
 ## Technologies Used
 
