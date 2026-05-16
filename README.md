@@ -21,3 +21,8 @@ The first project in the AI Software Engineering path on Tripleten. It is a web 
 
 - HTML & CSS
 - JavaScript
+
+## Project Pitch Video
+
+Check out [this video](https://drive.google.com/file/d/1vIbxj9RlytDgU6rRRcVH3chU6waAPYb5/view?usp=sharing), where I describe my
+project and some challenges I faced while building it.
