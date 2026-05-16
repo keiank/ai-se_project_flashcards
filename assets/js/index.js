@@ -36,7 +36,7 @@ function createDeckEl(item) {
   // Delete deck from DOM when delete button clicked
   const deleteBtn = newCard.querySelector(".card__delete-btn");
   deleteBtn.addEventListener("click", () => {
-    confirmDeletion(() => newCard.remove());
+    confirmDeletion("deck", () => newCard.remove());
   });
 
   return newCard;

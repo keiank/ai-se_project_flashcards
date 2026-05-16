@@ -106,9 +106,15 @@
       <p class="footer__text">&copy; Keian Kaserman</p>
     </footer>
 
-    <div id="confirmation-modal" class="modal">
+    <div
+      id="confirmation-modal"
+      class="modal"
+      aria-modal="true"
+      role="alertdialog"
+      aria-label="Confirm deletion modal"
+    >
       <div class="modal__container">
-        <p class="modal__text">Are you sure you want to delete this image?</p>
+        <p class="modal__text"></p>
         <div class="modal__buttons">
           <button type="button" class="modal__btn modal__btn_type_cancel">
             Cancel

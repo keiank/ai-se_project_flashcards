@@ -50,7 +50,7 @@ export function renderDeckView(deck) {
 
     const deleteBtn = cardEl.querySelector(".card__delete-btn");
     deleteBtn.onclick = () => {
-      confirmDeletion(() => cardEl.remove());
+      confirmDeletion("card", () => cardEl.remove());
     };
 
     galleryList.prepend(cardEl);
