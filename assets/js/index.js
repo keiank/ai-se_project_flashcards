@@ -68,6 +68,7 @@ function showView(section, displayValue) {
   section.style.display = displayValue;
 }
 
+let currentDeck = null;
 const practiceBtn = deckSection.querySelector(".gallery__practice-btn");
 practiceBtn.onclick = () => {
   window.location.hash = `carousel/${currentDeck.id}`;
