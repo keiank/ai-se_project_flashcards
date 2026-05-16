@@ -1,4 +1,5 @@
 import { hexToString, removeColorClasses } from "./colorMap.js";
+import { confirmDeletion } from "./modal.js";
 
 /**
  * Renders the deck view for a given deck object.
@@ -49,7 +50,7 @@ export function renderDeckView(deck) {
 
     const deleteBtn = cardEl.querySelector(".card__delete-btn");
     deleteBtn.onclick = () => {
-      cardEl.remove();
+      confirmDeletion(() => cardEl.remove());
     };
 
     galleryList.prepend(cardEl);
