@@ -3,6 +3,7 @@ import { hexToString, removeColorClasses } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 
+const page = document.querySelector(".page");
 const homeSection = document.querySelector("#home");
 const deckSection = document.querySelector("#deck-view");
 const carouselSection = document.querySelector("#carousel");
@@ -76,22 +77,27 @@ practiceBtn.onclick = () => {
 function router() {
   const hash = window.location.hash.slice(1) || "home";
   if (hash === "home" || hash === "") {
+    page.classList.remove("page_no-mobile-bar");
     renderHomeView();
   } else if (hash.startsWith("deck/")) {
     const deckID = hash.split("/")[1];
     const deck = getDeckByID(deckID);
     if (deck) {
+      page.classList.remove("page_no-mobile-bar");
       renderDeckView(deck);
       currentDeck = deck;
     } else {
+      page.classList.add("page_no-mobile-bar");
       renderNotFoundView();
     }
   } else if (hash.startsWith("carousel/")) {
     displayCarouselSection();
     const deckID = hash.split("/")[1];
     const deck = getDeckByID(deckID);
+    page.classList.add("page_no-mobile-bar");
     renderCarouselView(deck);
   } else {
+    page.classList.add("page_no-mobile-bar");
     renderNotFoundView();
   }
 }
