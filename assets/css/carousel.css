@@ -14,16 +14,15 @@
 .carousel__card-wrapper {
   display: grid;
   grid-template-areas:
-    "left-btn card card card right-btn"
-    ". . flip-btn . .";
+    "left-btn card right-btn"
+    ". flip-btn .";
   align-items: center;
 }
 
 .carousel__card {
-  width: min(440px, 100%);
-  max-width: 440px;
+  width: 440px;
   height: 300px;
-  padding: 20px;
+  padding: 0 20px;
   margin: 0 20px 24px 20px;
   border-radius: 20px;
   display: flex;
@@ -125,15 +124,17 @@
   background-image: url("../images/flip.svg");
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 647px) {
   .carousel__card-wrapper {
     grid-template-areas:
       "card card card"
       "left-btn flip-btn right-btn";
+    margin-bottom: 147px;
   }
 
   .carousel__card {
-    width: 100%;
+    min-width: 353px;
+    grid-template-columns: 44px minmax(353px - 88px, 353px) 44px;
     height: 420px;
     margin: 0 0 32px;
     box-shadow:
