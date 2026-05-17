@@ -1,3 +1,9 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .nav__links {
   list-style: none;
   display: flex;
