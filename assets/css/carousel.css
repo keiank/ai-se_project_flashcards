@@ -130,12 +130,12 @@
       "card card card"
       "left-btn flip-btn right-btn";
     margin-bottom: 147px;
+    width: min(353px, 100%);
   }
 
   .carousel__card {
-    min-width: 353px;
-    grid-template-columns: 44px minmax(353px - 88px, 353px) 44px;
-    height: 420px;
+    width: 100%;
+    aspect-ratio: 353 / 420;
     margin: 0 0 32px;
     box-shadow:
       1px -1px 2px 0px #00000040 inset,
