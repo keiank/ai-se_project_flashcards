@@ -64,8 +64,11 @@ function showView(section, displayValue) {
   if (section === carouselSection) {
     main.classList.add(carouselStyle);
     page.classList.add("page_no-mobile-bar");
+  } else if (section === newDeckSection) {
+    main.classList.add("page__main-content_type_new-deck-view");
   } else {
     main.classList.remove(carouselStyle);
+    main.classList.remove("page__main-content_type_new-deck-view");
     page.classList.remove("page_no-mobile-bar");
   }
   // edge case to remove gradient on mobile:

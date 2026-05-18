@@ -21,6 +21,11 @@
   margin: 106px 0 0;
 }
 
+.page__main-content_type_new-deck-view {
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 600px) {
   .page {
     padding: 20px;
