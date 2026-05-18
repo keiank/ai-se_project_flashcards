@@ -33,8 +33,8 @@
 }
 
 .gallery__new-card-btn {
-  width: 100%;
-  aspect-ratio: 353 / 44;
+  width: 325px;
+  height: 205px;
   border-radius: 20px;
   padding: 20px;
   font-weight: 700;
@@ -70,6 +70,13 @@
   );
 }
 
+@media screen and (max-width: 800px) {
+  .gallery__new-card-btn {
+    width: calc(100% - 80px);
+    height: auto;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .gallery__title {
     margin: 0 auto 20px;
@@ -78,5 +85,10 @@
   .gallery__list_wrapper {
     display: grid;
     grid-template-columns: 100%;
+    justify-content: center;
+  }
+
+  .gallery__new-card-btn {
+    width: calc(100% - 40px);
   }
 }
