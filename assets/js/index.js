@@ -8,10 +8,17 @@ const page = document.querySelector(".page");
 const homeSection = document.querySelector("#home");
 const deckSection = document.querySelector("#deck-view");
 const carouselSection = document.querySelector("#carousel");
+const newDeckSection = document.querySelector("#new-deck-view");
 const notFoundSection = document.querySelector("#not-found");
 const modal = document.querySelector(".modal");
 
-const sections = [homeSection, deckSection, carouselSection, notFoundSection];
+const sections = [
+  homeSection,
+  deckSection,
+  carouselSection,
+  newDeckSection,
+  notFoundSection,
+];
 
 const main = document.querySelector("main");
 const carouselStyle = "page__main-content_type_carousel";
@@ -74,6 +81,11 @@ practiceBtn.onclick = () => {
   window.location.hash = `carousel/${currentDeck.id}`;
 };
 
+const homeNewDeckBtn = homeSection.querySelector(".gallery__new-card-btn");
+homeNewDeckBtn.onclick = () => {
+  window.location.hash = "#new-deck-view";
+};
+
 function router() {
   const hash = window.location.hash.slice(1) || "home";
   if (hash === "home" || hash === "") {
@@ -93,6 +105,8 @@ function router() {
     const deckID = hash.split("/")[1];
     const deck = getDeckByID(deckID);
     renderCarouselView(deck);
+  } else if (hash.startsWith("new-deck-view")) {
+    showView(newDeckSection, "block");
   } else {
     showView(notFoundSection, "block");
   }
