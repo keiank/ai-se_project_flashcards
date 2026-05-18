@@ -110,6 +110,7 @@ function router() {
     renderCarouselView(deck);
   } else if (hash.startsWith("new-deck-view")) {
     showView(newDeckSection, "block");
+    page.classList.remove("page_no-mobile-bar");
   } else {
     showView(notFoundSection, "block");
   }
