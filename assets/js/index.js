@@ -3,6 +3,7 @@ import { hexToString, removeColorClasses } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 import { confirmDeletion } from "./modal.js";
+import { disableSubmitBtn } from "./new-deck-view.js";
 
 const page = document.querySelector(".page");
 const homeSection = document.querySelector("#home");
@@ -98,6 +99,7 @@ function router() {
     const deck = getDeckByID(deckID);
     if (deck) {
       page.classList.remove("page_no-mobile-bar");
+      showView(deckSection, "block");
       renderDeckView(deck);
       currentDeck = deck;
     } else {
@@ -110,6 +112,7 @@ function router() {
     renderCarouselView(deck);
   } else if (hash.startsWith("new-deck-view")) {
     showView(newDeckSection, "block");
+    disableSubmitBtn();
     page.classList.remove("page_no-mobile-bar");
   } else {
     showView(notFoundSection, "block");

@@ -9,14 +9,6 @@ export function renderDeckView(deck) {
   const page = document.querySelector(".page");
   const deckSection = document.querySelector("#deck-view");
   const main = document.querySelector("main");
-  const homeSection = document.querySelector("#home");
-  const carouselSection = document.querySelector("#carousel");
-  const notFoundSection = document.querySelector("#not-found");
-
-  homeSection.style.display = "none";
-  deckSection.style.display = "block";
-  carouselSection.style.display = "none";
-  notFoundSection.style.display = "none";
 
   const carouselStyle = "page__main-content_type_carousel";
   main.classList.remove(carouselStyle);
