@@ -69,7 +69,9 @@ newDeckForm.addEventListener("submit", (e) => {
       return;
     }
     if (jsonData.color.toLowerCase() !== color) {
-      showError("Color provided in JSON doesn't match selected color.");
+      showError(
+        "Invalid card color use one of: #64D583, #91A8F9, #EE92D7, #AA8EF0, #EE955E, #F5D770",
+      );
       return;
     }
   }
