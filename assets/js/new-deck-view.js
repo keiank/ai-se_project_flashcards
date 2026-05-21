@@ -45,11 +45,33 @@ newDeckForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const formObj = Object.fromEntries(formData.entries());
-  const jsonData = JSON.parse(formObj.deckdata);
+  let jsonData = parseJSON(formObj.deckdata);
+  if (!jsonData) {
+    showError("Invalid JSON");
+    return;
+  }
+
+  if (!validateName(jsonData.name)) {
+    showError("Name must be between 2 and 80 characters");
+    return;
+  }
+
+  if (!Array.isArray(jsonData.cards)) {
+    const errorMsg = `JSON must have member like: "cards": [...card objects here...]`;
+    showError(errorMsg);
+    return;
+  }
+
   const color = normalizeColor(formObj.color);
-  console.log(color);
+  if (typeof jsonData.color !== "string") {
+    showError("Invalid JSON: color is not a string.");
+    return;
+  }
+  if (jsonData.color.toLowerCase() !== color) {
+    showError("Color provided in JSON doesn't match selected color.");
+    return;
+  }
   const deckID = `${slugify(jsonData.name)}-${Date.now()}`;
-  console.log(color);
   const newDeck = {
     id: deckID,
     name: jsonData.name,
@@ -61,5 +83,33 @@ newDeckForm.addEventListener("submit", (e) => {
 
   window.location.hash = "deck/" + deckID;
 });
+
+const errorModal = document.querySelector("#new-deck-error-modal");
+const errorMessage = errorModal.querySelector(".modal__error");
+const closeModalBtn = errorModal.querySelector(".modal__btn_type_dismiss");
+
+closeModalBtn.addEventListener("click", () => {
+  errorModal.classList.remove("modal_visible");
+});
+
+function showError(message) {
+  errorMessage.textContent = message;
+  errorModal.classList.add("modal_visible");
+}
+
+function validateName(name) {
+  if (typeof name != "string" || name.length < 2 || name.length > 80) {
+    return null;
+  }
+  return name;
+}
+
+function parseJSON(jsonString) {
+  try {
+    return JSON.parse(jsonString);
+  } catch (error) {
+    return null;
+  }
+}
 
 export { disableSubmitBtn };

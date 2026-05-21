@@ -22,6 +22,18 @@
   background-color: #fff;
 }
 
+.modal__content {
+  background-color: #ffaea5;
+}
+
+.modal__title {
+  margin: 0 0 10px 0;
+}
+
+.modal__error {
+  margin: 0 0 20px 0;
+}
+
 .modal__text {
   font-size: 20px;
   line-height: 1.2;
@@ -36,6 +48,11 @@
   gap: 12px;
 }
 
+.modal__group_type_error {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .modal__btn {
   padding: 12px 16px 14px;
   border-radius: 8px;
@@ -46,6 +63,14 @@
 .modal__btn_type_cancel {
   background-color: #efefef;
   color: #000;
+}
+
+.modal__btn_type_dismiss {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 10px 16px 12px 16px;
+  border-radius: 8px;
+  border: none;
 }
 
 .modal__btn_type_confirm {
