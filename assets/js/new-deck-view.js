@@ -63,13 +63,15 @@ newDeckForm.addEventListener("submit", (e) => {
   }
 
   const color = normalizeColor(formObj.color);
-  if (typeof jsonData.color !== "string") {
-    showError("Invalid JSON: color is not a string.");
-    return;
-  }
-  if (jsonData.color.toLowerCase() !== color) {
-    showError("Color provided in JSON doesn't match selected color.");
-    return;
+  if (jsonData.color) {
+    if (typeof jsonData.color !== "string") {
+      showError("Invalid JSON: color is not a string.");
+      return;
+    }
+    if (jsonData.color.toLowerCase() !== color) {
+      showError("Color provided in JSON doesn't match selected color.");
+      return;
+    }
   }
   const deckID = `${slugify(jsonData.name)}-${Date.now()}`;
   const newDeck = {
