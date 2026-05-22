@@ -1,9 +1,11 @@
-import { gallery, getDeckByID } from "./gallery.js";
+import { getDeckByID } from "./gallery.js";
 import { hexToString, removeColorClasses } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 import { confirmDeletion } from "./modal.js";
 import { disableSubmitBtn } from "./new-deck-view.js";
+import { getDecks } from "./api.js";
+import { showError } from "./new-deck-view.js";
 
 const page = document.querySelector(".page");
 const homeSection = document.querySelector("#home");
@@ -20,9 +22,6 @@ const sections = [
   newDeckSection,
   notFoundSection,
 ];
-
-const main = document.querySelector("main");
-const carouselStyle = "page__main-content_type_carousel";
 
 function createDeckEl(item) {
   const cardTemplate = document.querySelector(".card-template");
@@ -56,12 +55,13 @@ function renderDeckEl(item) {
   galleryList.prepend(card);
 }
 
-gallery.forEach(renderDeckEl);
-
 function showView(section, displayValue) {
   for (const sec of sections) {
     sec.style.display = "none";
   }
+
+  const main = document.querySelector("main");
+  const carouselStyle = "page__main-content_type_carousel";
   if (section === carouselSection) {
     main.classList.add(carouselStyle);
     page.classList.add("page_no-mobile-bar");
@@ -119,5 +119,14 @@ function router() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", router);
+window.addEventListener("DOMContentLoaded", () => {
+  getDecks()
+    .then((decks) => {
+      decks.forEach(renderDeckEl);
+    })
+    .catch(() => {
+      showError("Error: Unable to render decks.");
+    })
+    .finally(router);
+});
 window.addEventListener("hashchange", router);

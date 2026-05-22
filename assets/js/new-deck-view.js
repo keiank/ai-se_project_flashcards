@@ -116,4 +116,4 @@ function parseJSON(jsonString) {
   }
 }
 
-export { disableSubmitBtn };
+export { disableSubmitBtn, showError };
