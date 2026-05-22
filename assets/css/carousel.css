@@ -9,6 +9,12 @@
   font-weight: 500;
   font-size: 14px;
   color: #1a1a1a80;
+  overflow-wrap: break-word;
+}
+
+.carousel__card-text {
+  overflow-wrap: break-word;
+  width: 100%;
 }
 
 .carousel__card-wrapper {
@@ -130,7 +136,7 @@
       "card card card"
       "left-btn flip-btn right-btn";
     margin-bottom: 147px;
-    width: min(353px, 100%);
+    width: 100%;
   }
 
   .carousel__card {
@@ -143,7 +149,17 @@
       0px 8px 24px 4px #00000040;
   }
 
+  .carousel__card-text {
+    width: calc(100vw - 120px);
+  }
+
   .carousel__btn {
     box-shadow: 0px 1px 4px 0px #00000026;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .carousel__card-text {
+    width: calc(100vw - 80px);
   }
 }
