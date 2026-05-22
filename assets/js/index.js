@@ -1,4 +1,4 @@
-import { getDeckByID } from "./gallery.js";
+import { fetchedDecks, getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
@@ -38,7 +38,7 @@ function createDeckEl(item) {
   cardCount.textContent = `${item.cards.length} cards`;
   // Link to deck view
   const cardLink = newCard.querySelector(".card__link");
-  cardLink.href = `#deck/${item.id}`;
+  cardLink.href = `#deck/${item._id}`;
 
   // Delete deck from DOM when delete button clicked
   const deleteBtn = newCard.querySelector(".card__delete-btn");
@@ -82,7 +82,7 @@ function showView(section, displayValue) {
 let currentDeck = null;
 const practiceBtn = deckSection.querySelector(".gallery__practice-btn");
 practiceBtn.onclick = () => {
-  window.location.hash = `carousel/${currentDeck.id}`;
+  window.location.hash = `carousel/${currentDeck._id}`;
 };
 
 const homeNewDeckBtn = homeSection.querySelector(".gallery__new-card-btn");
@@ -122,6 +122,7 @@ function router() {
 window.addEventListener("DOMContentLoaded", () => {
   getDecks()
     .then((decks) => {
+      fetchedDecks.push(...decks);
       decks.forEach(renderDeckEl);
     })
     .catch(() => {

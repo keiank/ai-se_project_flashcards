@@ -1,4 +1,4 @@
-import { gallery } from "./gallery.js";
+import { fetchedDecks } from "./decks.js";
 
 const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
 

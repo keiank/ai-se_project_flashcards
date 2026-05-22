@@ -759,6 +759,8 @@ const gallery = [
   },
 ];
 
+let fetchedDecks = [];
+
 /**
  * Retrieves a deck object by its ID from the decks array.
  *
@@ -766,7 +768,7 @@ const gallery = [
  * @returns {object|undefined} The deck object if found, undefined otherwise
  */
 function getDeckByID(deckId) {
-  return gallery.find((deck) => deck.id === deckId);
+  return fetchedDecks.find((deck) => deck._id === deckId);
 }
 
-export { gallery, getDeckByID };
+export { fetchedDecks, getDeckByID };
