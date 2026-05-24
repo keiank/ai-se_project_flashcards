@@ -4,7 +4,7 @@ import { renderCarouselView } from "./carousel.js";
 import { renderDeckView } from "./deck-view.js";
 import { confirmDeletion } from "./modal.js";
 import { disableSubmitBtn } from "./new-deck-view.js";
-import { getDecks } from "./api.js";
+import { getDecks, deleteDeck, removeDeckByID } from "./api.js";
 import { showError } from "./new-deck-view.js";
 
 const page = document.querySelector(".page");
@@ -25,28 +25,35 @@ const sections = [
 
 function createDeckEl(item) {
   const cardTemplate = document.querySelector(".card-template");
-  const newCard = cardTemplate.content.querySelector(".card").cloneNode(true);
+  const newDeck = cardTemplate.content.querySelector(".card").cloneNode(true);
 
   // Set deck title
-  const title = newCard.querySelector(".card__title");
+  const title = newDeck.querySelector(".card__title");
   title.textContent = item.name;
   // Set deck color
   const cardColor = hexToString(item.color);
-  newCard.classList.add(`card_color_${cardColor}`);
+  newDeck.classList.add(`card_color_${cardColor}`);
   // Set deck card count
-  const cardCount = newCard.querySelector(".card__count");
+  const cardCount = newDeck.querySelector(".card__count");
   cardCount.textContent = `${item.cards.length} cards`;
   // Link to deck view
-  const cardLink = newCard.querySelector(".card__link");
+  const cardLink = newDeck.querySelector(".card__link");
   cardLink.href = `#deck/${item._id}`;
 
   // Delete deck from DOM when delete button clicked
-  const deleteBtn = newCard.querySelector(".card__delete-btn");
+  const deleteBtn = newDeck.querySelector(".card__delete-btn");
   deleteBtn.addEventListener("click", () => {
-    confirmDeletion("deck", () => newCard.remove());
+    confirmDeletion("deck", () => {
+      deleteDeck(item._id)
+        .then(() => {
+          newDeck.remove();
+          removeDeckByID(item._id);
+        })
+        .catch((err) => console.error(`Unable to delete deck ${item._id}`));
+    });
   });
 
-  return newCard;
+  return newDeck;
 }
 
 function renderDeckEl(item) {

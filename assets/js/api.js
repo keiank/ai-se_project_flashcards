@@ -1,3 +1,5 @@
+import { fetchedDecks } from "./decks.js";
+
 const baseUrl = "https://se-flashcards-api.en.tripleten-services.com/v1";
 
 const headers = {
@@ -12,16 +14,28 @@ function processResponse(res) {
   return Promise.reject(`Error: ${res.status}`);
 }
 
-function getQuotes() {
-  return fetch(baseUrl + "/quotes", { headers }).then(processResponse);
-}
-
 function getDecks() {
-  return fetch(baseUrl + "/decks", { headers }).then(processResponse);
+  return fetch(`${baseUrl}/decks`, { headers }).then(processResponse);
 }
 
-function getRandomQuote() {
-  return fetch(baseUrl + "/quotes/random", { headers }).then(processResponse);
+/**
+ * Remove the deck from DB, using its ID.
+ */
+function deleteDeck(deckID) {
+  return fetch(`${baseUrl}/decks/${deckID}`, {
+    method: "DELETE",
+    headers,
+  }).then(processResponse);
 }
 
-export { getQuotes, getDecks, getRandomQuote };
+/**
+ * Remove the deck from the fetchedDecks array, using its ID.
+ */
+function removeDeckByID(deckID) {
+  const index = fetchedDecks.findIndex((currDeck) => currDeck._id === deckID);
+  if (index !== -1) {
+    fetchedDecks.splice(index, 1);
+  }
+}
+
+export { getDecks, deleteDeck, removeDeckByID };
