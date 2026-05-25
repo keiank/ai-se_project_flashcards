@@ -250,8 +250,9 @@
         </div>
       </li>
     </template>
+
     <template class="flashcard-template">
-      <li class="card card_color_green">
+      <li class="card">
         <h3 class="card__title"></h3>
         <div class="card__row">
           <button
@@ -265,6 +266,47 @@
           ></button>
         </div>
       </li>
+    </template>
+
+    <template id="new-card-template" class="new-card-template">
+      <form class="card new-card-template__form">
+        <div class="new-card-template__input-container">
+          <label for="question" class="new-card-template__input-labels">
+            <textarea
+              id="question"
+              name="question"
+              class="new-card-template__input new-card-template__question"
+              placeholder="Type the question or term"
+              maxlength="80"
+              aria-label="Question"
+              required
+            ></textarea>
+          </label>
+          <label for="answer" class="new-card-template__input-labels">
+            <textarea
+              id="answer"
+              name="answer"
+              class="new-card-template__input new-card-template__answer"
+              placeholder="Type the answer or definition"
+              maxlength="80"
+              aria-label="Answer"
+              required
+            ></textarea>
+          </label>
+        </div>
+        <div class="new-card-template__btn-row">
+          <button
+            class="card__flip-btn"
+            type="button"
+            aria-label="Flip this flashcard to fill in the other side of it"
+          ></button>
+          <button
+            class="card__create-btn"
+            aria-label="Create this card"
+            type="submit"
+          ></button>
+        </div>
+      </form>
     </template>
 
     <div id="new-deck-error-modal" class="modal">

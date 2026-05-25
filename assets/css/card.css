@@ -47,8 +47,13 @@
   background-image: url("../images/delete.svg");
 }
 
+.card__create-btn::before {
+  background-image: url("../images/check.svg");
+}
+
 .card__flip-btn,
-.card__delete-btn {
+.card__delete-btn,
+.card__create-btn {
   width: 37px;
   height: 34px;
   background-color: transparent;
@@ -58,7 +63,8 @@
 }
 
 .card__flip-btn::before,
-.card__delete-btn::before {
+.card__delete-btn::before,
+.card__create-btn::before {
   content: "";
   display: block;
   width: 100%;
@@ -69,7 +75,8 @@
 }
 
 .card__flip-btn:hover::before,
-.card__delete-btn:hover::before {
+.card__delete-btn:hover::before,
+.card__create-btn::before {
   opacity: 100%;
 }
 

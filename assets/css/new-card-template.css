@@ -1,0 +1,47 @@
+.new-card-template__input-container {
+  position: relative;
+  flex: 1 0 auto;
+}
+
+.new-card-template__input {
+  visibility: hidden;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  resize: none;
+  overflow: clip;
+}
+
+.new-card-template__input:focus {
+  outline: none;
+}
+
+.new-card-template__question,
+.new-card-template__answer,
+.new-card-template__question::placeholder {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.new-card-template__answer::placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.new-card-template_side_visible {
+  visibility: visible;
+}
+
+.new-card-template__btn-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+}
