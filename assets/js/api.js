@@ -14,6 +14,21 @@ function processResponse(res) {
   return Promise.reject(`Error: ${res.status}`);
 }
 
+function addDeck({ name, color, cards }) {
+  const deck = { name, color, cards };
+  let body;
+  try {
+    body = JSON.stringify(deck);
+  } catch (e) {
+    return Promise.reject(
+      `Error: problem converting deck object to deck string - ${e}`,
+    );
+  }
+  return fetch(`${baseUrl}/decks`, { method: "POST", headers, body }).then(
+    processResponse,
+  );
+}
+
 function getDecks() {
   return fetch(`${baseUrl}/decks`, { headers }).then(processResponse);
 }
@@ -38,4 +53,4 @@ function removeDeckByID(deckID) {
   }
 }
 
-export { getDecks, deleteDeck, removeDeckByID };
+export { getDecks, deleteDeck, removeDeckByID, addDeck };
