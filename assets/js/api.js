@@ -74,4 +74,16 @@ function removeDeckByID(deckID) {
   }
 }
 
-export { getDecks, deleteDeck, removeDeckByID, addDeck };
+/**
+ * Remove the card from DB, using its ID.
+ * @param {string} cardID - the unique ID of the card to delete.
+ * @returns {Promise<Object>} Promise resolving to the deletion response from the server.
+ */
+function deleteCard(cardID) {
+  return fetch(`${baseUrl}/cards/${cardID}`, {
+    method: "DELETE",
+    headers,
+  }).then(processResponse);
+}
+
+export { getDecks, deleteDeck, removeDeckByID, addDeck, deleteCard };

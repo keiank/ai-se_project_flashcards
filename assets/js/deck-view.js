@@ -1,5 +1,7 @@
+import { deleteCard } from "./api.js";
 import { hexToString, removeColorClasses } from "./colorMap.js";
 import { confirmDeletion } from "./modal.js";
+import { removeCardById } from "./decks.js";
 
 /**
  * Renders the deck view for a given deck object.
@@ -45,7 +47,14 @@ export function renderDeckView(deck) {
 
     const deleteBtn = cardEl.querySelector(".card__delete-btn");
     deleteBtn.onclick = () => {
-      confirmDeletion("card", () => cardEl.remove());
+      confirmDeletion("card", () => {
+        deleteCard(card._id)
+          .then(() => {
+            cardEl.remove();
+            removeCardById(deck._id, card._id);
+          })
+          .catch((err) => console.error(`Error: unable to delete card ${err}`));
+      });
     };
 
     galleryList.prepend(cardEl);
