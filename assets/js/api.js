@@ -33,9 +33,9 @@ function addDeck({ name, color, cards }) {
   let body;
   try {
     body = JSON.stringify(deck);
-  } catch (e) {
+  } catch (err) {
     return Promise.reject(
-      `Error: problem converting deck object to deck string - ${e}`,
+      `Error: problem converting deck object to deck string - ${err}`,
     );
   }
   return fetch(`${baseUrl}/decks`, { method: "POST", headers, body }).then(
@@ -86,4 +86,25 @@ function deleteCard(cardID) {
   }).then(processResponse);
 }
 
-export { getDecks, deleteDeck, removeDeckByID, addDeck, deleteCard };
+function createCard(deckId, { question, answer }) {
+  let card;
+  try {
+    card = JSON.stringify({ question, answer });
+  } catch (err) {
+    return Promise.reject(`Problem creating card - ${err}`);
+  }
+  return fetch(`${baseUrl}/cards/${deckId}`, {
+    method: "POST",
+    headers,
+    body: card,
+  }).then(processResponse);
+}
+
+export {
+  getDecks,
+  deleteDeck,
+  removeDeckByID,
+  addDeck,
+  deleteCard,
+  createCard,
+};
