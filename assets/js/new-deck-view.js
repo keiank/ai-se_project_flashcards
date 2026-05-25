@@ -21,6 +21,9 @@ const newDeckForm = document.querySelector("#new-deck-form");
 const newDeckData = newDeckForm.querySelector("#card-data");
 const submitBtn = newDeckForm.querySelector(".new-deck-view__submit-btn");
 
+/**
+ * Disables the submit button for the new deck form.
+ */
 function disableSubmitBtn() {
   submitBtn.disabled = false;
 }
@@ -80,11 +83,20 @@ closeModalBtn.addEventListener("click", () => {
   errorModal.classList.remove("modal_visible");
 });
 
+/**
+ * Displays an error message in the error modal.
+ * @param {string} message - The error message to display
+ */
 function showError(message) {
   errorMessage.textContent = message;
   errorModal.classList.add("modal_visible");
 }
 
+/**
+ * Validates that the deck name meets length requirements.
+ * @param {string} name - The name to validate
+ * @returns {string|null} The name if valid, null if invalid
+ */
 function validateName(name) {
   if (typeof name != "string" || name.length < 2 || name.length > 80) {
     return null;
@@ -92,6 +104,11 @@ function validateName(name) {
   return name;
 }
 
+/**
+ * Safely parses a JSON string and returns the resulting object.
+ * @param {string} jsonString - The JSON string to parse
+ * @returns {Object|null} The parsed object if valid, null if invalid
+ */
 function parseJSON(jsonString) {
   try {
     return JSON.parse(jsonString);

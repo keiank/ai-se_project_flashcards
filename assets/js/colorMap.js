@@ -13,7 +13,7 @@ const colorMap = {
  * string. If it isn't found in the colorMap object, colorMap.default is
  * returned.
  *
- * @param {string} colorName
+ * @param {string} colorName - the name of the color to convert to a hex code.
  * @returns a hexadecimal string
  */
 function stringToHex(colorName) {
@@ -26,7 +26,7 @@ function stringToHex(colorName) {
  * Accepts a hexadecimal string and returns the corresponding color name key,
  * if found in colorMap. If a match isn't found, null is returned.
  *
- * @param {string} hexValue
+ * @param {string} hexValue - the hex color value to convert to a string.
  * @returns a color name string
  */
 function hexToString(hexValue) {
@@ -41,7 +41,7 @@ function hexToString(hexValue) {
  * Accepts an HTML element and removes all BEM "_color_" modifiers from its
  * class list.
  *
- * @param {HTMLElement} element
+ * @param {HTMLElement} element - target element to remove color classes from.
  */
 function removeColorClasses(element) {
   [...element.classList].forEach((cls) => {

@@ -4,6 +4,9 @@ import { confirmDeletion } from "./modal.js";
 /**
  * Renders the deck view for a given deck object.
  * @param {Object} deck - The deck object to render.
+ * @param {string} deck.name - The name of the deck
+ * @param {string} deck.color - The hex color code for the deck
+ * @param {Array<Object>} deck.cards - Array of card objects with question and answer properties
  */
 export function renderDeckView(deck) {
   const page = document.querySelector(".page");

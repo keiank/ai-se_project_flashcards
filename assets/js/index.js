@@ -25,45 +25,65 @@ const sections = [
   notFoundSection,
 ];
 
-function createDeckEl(item) {
+/**
+ * Creates a DOM element for a deck card based on the provided deck object.
+ * Sets up the card's title, color, card count, and delete functionality.
+ * @param {Object} deck - The deck object
+ * @param {string} deck._id - The unique identifier of the deck
+ * @param {string} deck.name - The name of the deck
+ * @param {string} deck.color - The hex color code for the deck
+ * @param {Array<Object>} deck.cards - Array of cards in the deck
+ * @returns {Element} The created deck card element
+ */
+function createDeckEl(deck) {
   const cardTemplate = document.querySelector(".card-template");
   const newDeck = cardTemplate.content.querySelector(".card").cloneNode(true);
 
   // Set deck title
   const title = newDeck.querySelector(".card__title");
-  title.textContent = item.name;
+  title.textContent = deck.name;
   // Set deck color
-  const cardColor = hexToString(item.color);
+  const cardColor = hexToString(deck.color);
   newDeck.classList.add(`card_color_${cardColor}`);
   // Set deck card count
   const cardCount = newDeck.querySelector(".card__count");
-  cardCount.textContent = `${item.cards.length} cards`;
+  cardCount.textContent = `${deck.cards.length} cards`;
   // Link to deck view
   const cardLink = newDeck.querySelector(".card__link");
-  cardLink.href = `#deck/${item._id}`;
+  cardLink.href = `#deck/${deck._id}`;
 
   // Delete deck from DOM when delete button clicked
   const deleteBtn = newDeck.querySelector(".card__delete-btn");
   deleteBtn.addEventListener("click", () => {
     confirmDeletion("deck", () => {
-      deleteDeck(item._id)
+      deleteDeck(deck._id)
         .then(() => {
           newDeck.remove();
-          removeDeckByID(item._id);
+          removeDeckByID(deck._id);
         })
-        .catch((err) => console.error(`Unable to delete deck ${item._id}`));
+        .catch((err) => console.error(`Unable to delete deck ${deck._id}`));
     });
   });
 
   return newDeck;
 }
 
-function renderDeckEl(item) {
+/**
+ * Renders a deck element in the gallery list on the home section.
+ * @param {Object} deck - The deck object to render
+ */
+function renderDeckEl(deck) {
   const galleryList = homeSection.querySelector(".gallery__list");
-  const card = createDeckEl(item);
+  const card = createDeckEl(deck);
   galleryList.prepend(card);
 }
 
+/**
+ * Shows a specific section and hides all other sections.
+ * Applies appropriate styling classes based on the section type.
+ * @param {Element} section - The section element to display
+ * @param {string} displayValue - The CSS display value (e.g., 'block', 'flex', 'none')
+ */
 function showView(section, displayValue) {
   for (const sec of sections) {
     sec.style.display = "none";
@@ -99,6 +119,10 @@ homeNewDeckBtn.onclick = () => {
   window.location.hash = "#new-deck-view";
 };
 
+/**
+ * Routes to the appropriate view based on the current URL hash.
+ * Handles navigation between home, deck, carousel, new-deck, and about views.
+ */
 function router() {
   const hash = window.location.hash.slice(1) || "home";
   if (hash === "home" || hash === "") {
