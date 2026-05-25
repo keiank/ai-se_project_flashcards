@@ -12,6 +12,7 @@ const homeSection = document.querySelector("#home");
 const deckSection = document.querySelector("#deck-view");
 const carouselSection = document.querySelector("#carousel");
 const newDeckSection = document.querySelector("#new-deck-view");
+const aboutSection = document.querySelector("#about");
 const notFoundSection = document.querySelector("#not-found");
 const modal = document.querySelector(".modal");
 
@@ -20,6 +21,7 @@ const sections = [
   deckSection,
   carouselSection,
   newDeckSection,
+  aboutSection,
   notFoundSection,
 ];
 
@@ -72,11 +74,11 @@ function showView(section, displayValue) {
   if (section === carouselSection) {
     main.classList.add(carouselStyle);
     page.classList.add("page_no-mobile-bar");
-  } else if (section === newDeckSection) {
-    main.classList.add("page__main-content_type_new-deck-view");
+  } else if (section === newDeckSection || section === aboutSection) {
+    main.classList.add("page__main-content_type_centered");
   } else {
     main.classList.remove(carouselStyle);
-    main.classList.remove("page__main-content_type_new-deck-view");
+    main.classList.remove("page__main-content_type_centered");
     page.classList.remove("page_no-mobile-bar");
   }
   // edge case to remove gradient on mobile:
@@ -121,6 +123,8 @@ function router() {
     showView(newDeckSection, "block");
     disableSubmitBtn();
     page.classList.remove("page_no-mobile-bar");
+  } else if (hash.startsWith("about")) {
+    showView(aboutSection, "block");
   } else {
     showView(notFoundSection, "block");
   }
