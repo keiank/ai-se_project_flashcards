@@ -8,19 +8,25 @@ The first project in the AI Software Engineering path on Tripleten. It is a web 
 
 ## Features
 
-- Single page display
-- Review each deck using a carousel
 - Choose to review among multiple decks
-- Add new decks of cards (coming soon!)
-- Delete decks of cards
-- Responsive design
+- Add new decks of cards
+- About page describing app and new deck JSON schema
 - Open deck to display all cards
+- Review each deck using a carousel
+- Delete decks of cards
 - Deletion confirmation modal
+- Edit existing cards
+- Create new cards in existing deck
+- Deck information stored via remote API
+- Single page display
+- Responsive design
+- Complete documentation with JSDoc
 
 ## Technologies Used
 
 - HTML & CSS
 - JavaScript
+- JSDoc
 
 ## Project Pitch Video
 
