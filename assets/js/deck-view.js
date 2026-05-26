@@ -11,6 +11,15 @@ import {
 const deckSection = document.querySelector("#deck-view");
 const galleryList = deckSection.querySelector(".gallery__list");
 
+/**
+ * Creates a DOM element for a flashcard based on the provided card object.
+ * Includes flip functionality to toggle between question and answer sides.
+ * @param {Object} card - The card object to display
+ * @param {Object} deck - Deck information
+ * @param {string} deck.deckId - The ID of the parent deck
+ * @param {string} deck.deckHexColor - The hex color code for the deck
+ * @returns {Element} The created card element with flip and delete functionality
+ */
 function createNewCard(card, { deckId, deckHexColor }) {
   const template = document.querySelector(".flashcard-template");
   const cardEl = template.content.querySelector(".card").cloneNode(true);
@@ -71,6 +80,13 @@ function renderDeckView(deck) {
   });
 }
 
+/**
+ * Toggles the card's color between the deck color and white based on the side being displayed.
+ * @param {Element} cardEl - The card DOM element to update
+ * @param {string} deckColor - The color name string for the deck
+ * @param {boolean} questionDisplayed - Whether the question side is currently displayed
+ * @returns {boolean} The negated value of questionDisplayed (the new display state)
+ */
 function swapCardColor(cardEl, deckColor, questionDisplayed) {
   removeColorClasses(cardEl);
   if (questionDisplayed) {
@@ -81,6 +97,12 @@ function swapCardColor(cardEl, deckColor, questionDisplayed) {
   return !questionDisplayed;
 }
 
+/**
+ * Displays a form for creating a new card in the given deck.
+ * Sets up card flipping and creation functionality.
+ * @param {Object} deck - The deck object to add the new card to
+ * @returns {void}
+ */
 function showNewCard(deck) {
   const newCardTemplate = document.querySelector("#new-card-template");
   const newCardEl = newCardTemplate.content

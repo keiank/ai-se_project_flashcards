@@ -86,6 +86,14 @@ function deleteCard(cardID) {
   }).then(processResponse);
 }
 
+/**
+ * Creates a new card in a specific deck with the provided question and answer.
+ * @param {string} deckId - The unique ID of the deck to add the card to
+ * @param {Object} card - The card information
+ * @param {string} card.question - The question text for the card
+ * @param {string} card.answer - The answer text for the card
+ * @returns {Promise<Object>} Promise resolving to the created card object
+ */
 function createCard(deckId, { question, answer }) {
   let card;
   try {
