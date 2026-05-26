@@ -108,6 +108,28 @@ function createCard(deckId, { question, answer }) {
   }).then(processResponse);
 }
 
+/**
+ * Update the card information in the DB, using its ID.
+ * @param {string} cardID - the unique ID of the card to delete.
+ * @param {Object} card - the card information
+ * @param {string} card.question - the question side of the card
+ * @param {string} card.answer - the answer side of the card
+ * @returns {Promise<Object>} Promise resolving to the deletion response from the server.
+ */
+function updateCard(cardID, { question, answer }) {
+  let body;
+  try {
+    body = JSON.stringify({ question, answer });
+  } catch (err) {
+    return Promise.reject(`Problem editing card - ${err}`);
+  }
+  return fetch(`${baseUrl}/cards/${cardID}`, {
+    method: "PUT",
+    headers,
+    body,
+  }).then(processResponse);
+}
+
 export {
   getDecks,
   deleteDeck,
