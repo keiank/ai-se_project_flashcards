@@ -137,4 +137,5 @@ export {
   addDeck,
   deleteCard,
   createCard,
+  updateCard,
 };

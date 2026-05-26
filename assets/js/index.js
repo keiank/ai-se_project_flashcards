@@ -1,7 +1,7 @@
 import { fetchedDecks, getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
-import { renderDeckView, showNewCard } from "./deck-view.js";
+import { renderDeckView, makeNewCard } from "./deck-view.js";
 import { confirmDeletion } from "./modal.js";
 import { disableSubmitBtn } from "./new-deck-view.js";
 import { getDecks, deleteDeck, removeDeckByID } from "./api.js";
@@ -123,7 +123,9 @@ const deckViewNewCardBtn = deckSection.querySelector(
   ".gallery__new-card-btn_location_deck-view",
 );
 deckViewNewCardBtn.addEventListener("click", () => {
-  showNewCard(currentDeck);
+  const galleryList = deckSection.querySelector(".gallery__list");
+  const newCardBtn = makeNewCard(currentDeck, null);
+  galleryList.append(newCardBtn);
 });
 
 /**

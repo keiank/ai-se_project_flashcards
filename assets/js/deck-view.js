@@ -1,4 +1,4 @@
-import { createCard, deleteCard } from "./api.js";
+import { createCard, updateCard, deleteCard } from "./api.js";
 import { hexToString, removeColorClasses } from "./colorMap.js";
 import { confirmDeletion } from "./modal.js";
 import {
@@ -20,7 +20,7 @@ const galleryList = deckSection.querySelector(".gallery__list");
  * @param {string} deck.deckHexColor - The hex color code for the deck
  * @returns {Element} The created card element with flip and delete functionality
  */
-function createNewCard(card, { deckId, deckHexColor }) {
+function createCardEl(card, { deckId, deckHexColor }) {
   const template = document.querySelector(".flashcard-template");
   const cardEl = template.content.querySelector(".card").cloneNode(true);
   removeColorClasses(cardEl);
@@ -39,6 +39,21 @@ function createNewCard(card, { deckId, deckHexColor }) {
     cardEl.classList.add(
       flipped ? "card_color_white" : `card_color_${cardColor}`,
     );
+  });
+
+  const editBtn = cardEl.querySelector(".card__edit-btn");
+  editBtn.addEventListener("click", (evt) => {
+    const newCardBtn = makeNewCard(
+      { _id: deckId, color: deckHexColor },
+      card._id,
+    );
+    // pre-fill with existing card's data:
+    const question = newCardBtn.querySelector(".new-card-template__question");
+    const answer = newCardBtn.querySelector(".new-card-template__answer");
+    question.value = card.question;
+    answer.value = card.answer;
+    // Replace original card with editable button
+    cardEl.replaceWith(newCardBtn);
   });
 
   const deleteBtn = cardEl.querySelector(".card__delete-btn");
@@ -72,7 +87,7 @@ function renderDeckView(deck) {
   galleryList.textContent = "";
 
   deck.cards.forEach((card) => {
-    const newCardEl = createNewCard(card, {
+    const newCardEl = createCardEl(card, {
       deckId: deck._id,
       deckHexColor: deck.color,
     });
@@ -100,10 +115,11 @@ function swapCardColor(cardEl, deckColor, questionDisplayed) {
 /**
  * Displays a form for creating a new card in the given deck.
  * Sets up card flipping and creation functionality.
- * @param {Object} deck - The deck object to add the new card to
+ * @param {Object} deck - the deck to add the new card to
+ * @param {?string} cardId - string if editing a card, otherwise null
  * @returns {void}
  */
-function showNewCard(deck) {
+function makeNewCard(deck, cardId) {
   const newCardTemplate = document.querySelector("#new-card-template");
   const newCardEl = newCardTemplate.content
     .querySelector(".new-card-template__form")
@@ -127,9 +143,17 @@ function showNewCard(deck) {
   });
 
   const createBtn = newCardEl.querySelector(".card__create-btn");
+  let handlerFunc, targetId;
+  if (cardId) {
+    handlerFunc = updateCard;
+    targetId = cardId;
+  } else {
+    handlerFunc = createCard;
+    targetId = deck._id;
+  }
   createBtn.addEventListener("click", (evt) => {
     evt.preventDefault();
-    createCard(deck._id, {
+    handlerFunc(targetId, {
       question: question.value,
       answer: answer.value,
     }).then((card) => {
@@ -137,7 +161,7 @@ function showNewCard(deck) {
       // add to browser storage
       fetchedDecks[index].cards.push(card);
       // add deck to list of cards without reloading page
-      const cardEl = createNewCard(card, {
+      const cardEl = createCardEl(card, {
         deckId: deck._id,
         deckHexColor: deck.color,
       });
@@ -147,7 +171,7 @@ function showNewCard(deck) {
     });
   });
 
-  galleryList.append(newCardEl);
+  return newCardEl;
 }
 
-export { renderDeckView, showNewCard };
+export { renderDeckView, makeNewCard };
