@@ -32,6 +32,11 @@
   flex-wrap: wrap;
 }
 
+.card__row_editing {
+  display: flex;
+  gap: 20px;
+}
+
 .card__count {
   margin: 0;
   font-weight: 400;
@@ -51,20 +56,27 @@
   background-image: url("../images/check.svg");
 }
 
+.card__edit-btn::before {
+  background-image: url("../images/pencil.svg");
+}
+
 .card__flip-btn,
 .card__delete-btn,
-.card__create-btn {
-  width: 37px;
-  height: 34px;
+.card__create-btn,
+.card__edit-btn {
+  width: 24px;
+  height: 24px;
   background-color: transparent;
   border: none;
   cursor: pointer;
   z-index: 2;
+  padding: 0;
 }
 
 .card__flip-btn::before,
 .card__delete-btn::before,
-.card__create-btn::before {
+.card__create-btn::before,
+.card__edit-btn::before {
   content: "";
   display: block;
   width: 100%;
@@ -76,7 +88,8 @@
 
 .card__flip-btn:hover::before,
 .card__delete-btn:hover::before,
-.card__create-btn::before {
+.card__create-btn::before,
+.card__edit-btn::before {
   opacity: 100%;
 }
 
