@@ -5,6 +5,7 @@ import {
   fetchedDecks,
   getDeckByID,
   getDeckIndex,
+  getCardIndex,
   removeCardById,
 } from "./decks.js";
 
@@ -158,8 +159,13 @@ function makeNewCard(deck, cardId) {
       answer: answer.value,
     }).then((card) => {
       const index = getDeckIndex(deck._id);
-      // add to browser storage
-      fetchedDecks[index].cards.push(card);
+      if (handlerFunc === createCard) {
+        // add to browser storage
+        fetchedDecks[index].cards.push(card);
+      } else {
+        const cardIndex = getCardIndex(deck._id, card._id);
+        fetchedDecks[index].cards[cardIndex] = card;
+      }
       // add deck to list of cards without reloading page
       const cardEl = createCardEl(card, {
         deckId: deck._id,
