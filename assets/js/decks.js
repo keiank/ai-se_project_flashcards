@@ -49,4 +49,10 @@ function removeCardById(deckId, cardId) {
   }
 }
 
-export { fetchedDecks, getDeckByID, getDeckIndex, removeCardById };
+export {
+  fetchedDecks,
+  getDeckByID,
+  getDeckIndex,
+  getCardIndex,
+  removeCardById,
+};
