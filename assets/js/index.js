@@ -3,7 +3,7 @@ import { hexToString, removeColorClasses } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView, makeNewCard } from "./deck-view.js";
 import { confirmDeletion } from "./modal.js";
-import { disableSubmitBtn, renderNewDeckView } from "./new-deck-view.js";
+import { renderNewDeckView } from "./new-deck-view.js";
 import { getDecks, deleteDeck, removeDeckByID } from "./api.js";
 import { showError } from "./new-deck-view.js";
 
