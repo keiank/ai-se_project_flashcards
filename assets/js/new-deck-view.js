@@ -22,9 +22,24 @@ const newDeckData = newDeckForm.querySelector("#card-data");
 const submitBtn = newDeckForm.querySelector(".new-deck-view__submit-btn");
 
 /**
+ * Sets initial state and appearance of new deck form.
+ */
+function renderNewDeckView() {
+  newDeckData.textContent = "";
+  enableSubmitBtn();
+}
+
+/**
  * Disables the submit button for the new deck form.
  */
 function disableSubmitBtn() {
+  submitBtn.disabled = true;
+}
+
+/**
+ * Enables the submit button for the new deck form.
+ */
+function enableSubmitBtn() {
   submitBtn.disabled = false;
 }
 
@@ -117,4 +132,4 @@ function parseJSON(jsonString) {
   }
 }
 
-export { disableSubmitBtn, showError };
+export { showError, renderNewDeckView };

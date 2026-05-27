@@ -3,7 +3,7 @@ import { hexToString, removeColorClasses } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView, makeNewCard } from "./deck-view.js";
 import { confirmDeletion } from "./modal.js";
-import { disableSubmitBtn } from "./new-deck-view.js";
+import { disableSubmitBtn, renderNewDeckView } from "./new-deck-view.js";
 import { getDecks, deleteDeck, removeDeckByID } from "./api.js";
 import { showError } from "./new-deck-view.js";
 
@@ -154,7 +154,7 @@ function router() {
     renderCarouselView(deck);
   } else if (hash.startsWith("new-deck-view")) {
     showView(newDeckSection, "block");
-    disableSubmitBtn();
+    renderNewDeckView();
     page.classList.remove("page_no-mobile-bar");
   } else if (hash.startsWith("about")) {
     showView(aboutSection, "block");
