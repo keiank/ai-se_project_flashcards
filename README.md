@@ -32,3 +32,5 @@ The first project in the AI Software Engineering path on Tripleten. It is a web 
 
 Check out [this video](https://drive.google.com/file/d/1vIbxj9RlytDgU6rRRcVH3chU6waAPYb5/view?usp=sharing), where I describe my
 project and some challenges I faced while building it.
+
+[This video](https://drive.google.com/file/d/19QyNWa-hJ49uzHis0ILIskT_sgbHGudZ/view?usp=sharing) describes updates and additional features I added in the second development iteration.
