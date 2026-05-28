@@ -23,6 +23,7 @@ const submitBtn = newDeckForm.querySelector(".new-deck-view__submit-btn");
 
 /**
  * Sets initial state and appearance of new deck form.
+ * @returns {void}
  */
 function renderNewDeckView() {
   newDeckData.textContent = "";
@@ -31,6 +32,7 @@ function renderNewDeckView() {
 
 /**
  * Disables the submit button for the new deck form.
+ * @returns {void}
  */
 function disableSubmitBtn() {
   submitBtn.disabled = true;
@@ -38,6 +40,7 @@ function disableSubmitBtn() {
 
 /**
  * Enables the submit button for the new deck form.
+ * @returns {void}
  */
 function enableSubmitBtn() {
   submitBtn.disabled = false;
@@ -101,6 +104,7 @@ closeModalBtn.addEventListener("click", () => {
 /**
  * Displays an error message in the error modal.
  * @param {string} message - The error message to display
+ * @returns {void}
  */
 function showError(message) {
   errorMessage.textContent = message;
@@ -110,7 +114,7 @@ function showError(message) {
 /**
  * Validates that the deck name meets length requirements.
  * @param {string} name - The name to validate
- * @returns {string|null} The name if valid, null if invalid
+ * @returns {?string} The name if valid, null if invalid
  */
 function validateName(name) {
   if (typeof name != "string" || name.length < 2 || name.length > 80) {
@@ -122,7 +126,7 @@ function validateName(name) {
 /**
  * Safely parses a JSON string and returns the resulting object.
  * @param {string} jsonString - The JSON string to parse
- * @returns {Object|null} The parsed object if valid, null if invalid
+ * @returns {?Object} The parsed object if valid, null if invalid
  */
 function parseJSON(jsonString) {
   try {

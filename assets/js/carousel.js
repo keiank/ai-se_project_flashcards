@@ -22,7 +22,8 @@ function renderCarouselView(deck) {
 
   /**
    * Updates the carousel's title to match the deck's name.
-   * @param {number} - current card number displayed.
+   * @param {number} cardN - current card number displayed.
+   * @returns {void}
    */
   function updateTitleString(cardN) {
     const deckTitleEl = carouselEl.querySelector(".carousel__title");
@@ -35,7 +36,8 @@ function renderCarouselView(deck) {
 
   /**
    * Disables a button on the carousel view.
-   * @param {Element} - the button html DOM element to disable.
+   * @param {Element} buttonEl - the button html DOM element to disable.
+   * @returns {void}
    */
   function disableButton(buttonEl) {
     buttonEl.classList.add("carousel__btn_disabled");
@@ -44,7 +46,8 @@ function renderCarouselView(deck) {
 
   /**
    * Enables a button on the carousel view.
-   * @param {Element} - the button html DOM element to enable.
+   * @param {Element} buttonEl- the button html DOM element to enable.
+   * @returns {void}
    */
   function enableButton(buttonEl) {
     buttonEl.classList.remove("carousel__btn_disabled");
@@ -54,6 +57,7 @@ function renderCarouselView(deck) {
   /**
    * Ensures buttons are disabled when we reach the beginning and end
    * of the carousel.
+   * @returns {void}
    */
   function updateArrows() {
     if (currentIndex === 0) {
@@ -72,6 +76,7 @@ function renderCarouselView(deck) {
   /**
    * Keeps the carousel view current with after each event
    * on the UI.
+   * @returns {void}
    */
   function updateDisplay() {
     if (!showingQuestion) {

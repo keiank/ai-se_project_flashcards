@@ -11,12 +11,14 @@ const confirmBtnModal = confirmationModal.querySelector(
  * Displays a confirmation modal asking the user to confirm deletion.
  * @param {string} type - The type of item being deleted (e.g., 'deck', 'card')
  * @param {Function} doFirst - Callback function to execute first if the user confirms deletion
+ * @returns {void}
  */
 function confirmDeletion(type, doFirst) {
   confirmationModal.classList.add("modal_visible");
   modalText.textContent = `Are you sure you want to delete this ${type}?`;
   /**
    * Closes the confirmation modal and removes attached event listeners.
+   * @returns {void}
    */
   function closeModal() {
     confirmationModal.classList.remove("modal_visible");
@@ -27,6 +29,7 @@ function confirmDeletion(type, doFirst) {
   /**
    * Handles the confirm button click: performs the provided action
    * and then closes the modal.
+   * @returns {void}
    */
   function handleConfirm() {
     doFirst();

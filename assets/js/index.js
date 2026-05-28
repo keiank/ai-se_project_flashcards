@@ -71,6 +71,7 @@ function createDeckEl(deck) {
 /**
  * Renders a deck element in the gallery list on the home section.
  * @param {Object} deck - The deck object to render
+ * @returns {void}
  */
 function renderDeckEl(deck) {
   const galleryList = homeSection.querySelector(".gallery__list");
@@ -83,6 +84,7 @@ function renderDeckEl(deck) {
  * Applies appropriate styling classes based on the section type.
  * @param {Element} section - The section element to display
  * @param {string} displayValue - The CSS display value (e.g., 'block', 'flex', 'none')
+ * @returns {void}
  */
 function showView(section, displayValue) {
   for (const sec of sections) {
@@ -131,6 +133,7 @@ deckViewNewCardBtn.addEventListener("click", () => {
 /**
  * Routes to the appropriate view based on the current URL hash.
  * Handles navigation between home, deck, carousel, new-deck, and about views.
+ * @returns {void}
  */
 function router() {
   const hash = window.location.hash.slice(1) || "home";
