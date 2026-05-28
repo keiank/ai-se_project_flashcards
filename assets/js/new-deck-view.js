@@ -90,7 +90,9 @@ newDeckForm.addEventListener("submit", (e) => {
       fetchedDecks.push(newDeck);
       window.location.hash = "deck/" + newDeck._id;
     })
-    .catch(showError);
+    .catch(() => {
+      showError("Error: unable to create new deck");
+    });
 });
 
 const errorModal = document.querySelector("#new-deck-error-modal");

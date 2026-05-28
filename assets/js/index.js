@@ -61,7 +61,9 @@ function createDeckEl(deck) {
           newDeck.remove();
           removeDeckByID(deck._id);
         })
-        .catch((err) => console.error(`Unable to delete deck ${deck._id}`));
+        .catch(() => {
+          showError("Error: Unable to delete deck");
+        });
     });
   });
 

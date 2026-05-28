@@ -8,6 +8,7 @@ import {
   getCardIndex,
   removeCardById,
 } from "./decks.js";
+import { showError } from "./new-deck-view.js";
 
 const deckSection = document.querySelector("#deck-view");
 const galleryList = deckSection.querySelector(".gallery__list");
@@ -68,7 +69,9 @@ function createCardEl(card, { deckId, deckHexColor }) {
           // to deck view
           removeCardById(deckId, card._id);
         })
-        .catch((err) => console.error(`Error: unable to delete card ${err}`));
+        .catch(() => {
+          showError("Unable to delete card");
+        });
     });
   };
 
@@ -157,24 +160,28 @@ function makeNewCard(deck, cardId) {
     handlerFunc(targetId, {
       question: question.value,
       answer: answer.value,
-    }).then((card) => {
-      const index = getDeckIndex(deck._id);
-      if (handlerFunc === createCard) {
-        // add to browser storage
-        fetchedDecks[index].cards.push(card);
-      } else {
-        const cardIndex = getCardIndex(deck._id, card._id);
-        fetchedDecks[index].cards[cardIndex] = card;
-      }
-      // add deck to list of cards without reloading page
-      const cardEl = createCardEl(card, {
-        deckId: deck._id,
-        deckHexColor: deck.color,
+    })
+      .then((card) => {
+        const index = getDeckIndex(deck._id);
+        if (handlerFunc === createCard) {
+          // add to browser storage
+          fetchedDecks[index].cards.push(card);
+        } else {
+          const cardIndex = getCardIndex(deck._id, card._id);
+          fetchedDecks[index].cards[cardIndex] = card;
+        }
+        // add deck to list of cards without reloading page
+        const cardEl = createCardEl(card, {
+          deckId: deck._id,
+          deckHexColor: deck.color,
+        });
+        // remove new card button from UI
+        // and replace it with the card we committed to the DB
+        newCardEl.replaceWith(cardEl);
+      })
+      .catch(() => {
+        showError("Unable to create new card");
       });
-      // remove new card button from UI
-      // and replace it with the card we committed to the DB
-      newCardEl.replaceWith(cardEl);
-    });
   });
 
   return newCardEl;
