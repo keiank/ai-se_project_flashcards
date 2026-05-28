@@ -49,10 +49,23 @@ function removeCardById(deckId, cardId) {
   }
 }
 
+/**
+ * Remove the deck from the fetchedDecks array, using its ID.
+ * @param {string} deckID - the unique ID of the deck to remove from the browser local array.
+ * @returns {void}
+ */
+function removeDeckByID(deckID) {
+  const index = fetchedDecks.findIndex((currDeck) => currDeck._id === deckID);
+  if (index !== -1) {
+    fetchedDecks.splice(index, 1);
+  }
+}
+
 export {
   fetchedDecks,
   getDeckByID,
   getDeckIndex,
   getCardIndex,
+  removeDeckByID,
   removeCardById,
 };

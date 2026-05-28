@@ -64,17 +64,6 @@ function deleteDeck(deckID) {
 }
 
 /**
- * Remove the deck from the fetchedDecks array, using its ID.
- * @param {string} deckID - the unique ID of the deck to remove from the browser local array.
- */
-function removeDeckByID(deckID) {
-  const index = fetchedDecks.findIndex((currDeck) => currDeck._id === deckID);
-  if (index !== -1) {
-    fetchedDecks.splice(index, 1);
-  }
-}
-
-/**
  * Remove the card from DB, using its ID.
  * @param {string} cardID - the unique ID of the card to delete.
  * @returns {Promise<Object>} Promise resolving to the deletion response from the server.
@@ -130,12 +119,4 @@ function updateCard(cardID, { question, answer }) {
   }).then(processResponse);
 }
 
-export {
-  getDecks,
-  deleteDeck,
-  removeDeckByID,
-  addDeck,
-  deleteCard,
-  createCard,
-  updateCard,
-};
+export { getDecks, deleteDeck, addDeck, deleteCard, createCard, updateCard };
